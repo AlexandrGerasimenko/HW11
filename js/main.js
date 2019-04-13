@@ -17,13 +17,11 @@ var req = new XMLHttpRequest();
 req.responseType = 'json';
 req.open('GET', 'simple.json', true);
 req.onload  = function() {
-    var jsonResponse = req.response;
-   jsonResponse.forEach(element => {
-        var image = document.body.appendChild(document.createElement('img'));
-        image.src= element.ref;
-        var text = document.body.appendChild(document.createElement('p'));
-        text.innerText = element.title;
-    });
+  var jsonResponse = req.response;
+  jsonResponse.forEach(element => {
+    document.body.appendChild(document.createElement('img')).src = element.ref;
+    document.body.appendChild(document.createElement('p')).innerText = element.title;
+  });
 };
 req.send(null);
 
@@ -33,65 +31,13 @@ req.send(null);
 fetch('simple.json')
   .then(response => response.json())
     .then(jsonResponse => jsonResponse.forEach(element => {
-        var image = document.body.appendChild(document.createElement('img'));
-        image.src= element.ref;
-        var text = document.body.appendChild(document.createElement('p'));
-        text.innerText = element.title;
+      document.body.appendChild(document.createElement('img')).src = element.ref;
+      document.body.appendChild(document.createElement('p')).innerText = element.title;
     
     }));
 
 
-    let promise = new Promise(
-        function(resolve,reject){
-          const request = new XMLHttpRequest()
-          request.open('GET','gitJSON.json')
-      
-          request.onreadystatechange = function(event){
-            event.target.readyState === 4 ? 
-              event.target.status === 200 ?                           resolve(event.target.responseText) :
-                   reject(event.target.statusText) : null  
-          }
-          request.send()
-        }
-      )
-      promise.then(
-        response => JSON.parse(response).forEach(
-            picture => document.body.appendChild(document.createElement('img')).src = picture.url
-        )
-      )
-
-
-      function loadData(url){
-        
-    new Promise(
-        function(resolve,reject){
-          const request = new XMLHttpRequest()
-          request.open('GET','gitJSON.json')
-      
-          request.onreadystatechange = function(event){
-            event.target.readyState === 4 ? 
-              event.target.status === 200 ?                           resolve(event.target.responseText) :
-                   reject(event.target.statusText) : null  
-          }
-          request.send()
-        }
-      )
-      loadData('simple.json').then(
-        response => JSON.parse(response).forEach(
-            picture => document.body.appendChild(document.createElement('img')).src = picture.url
-        )
-      )
-      loadData('message.txt').then(
-          response => document.body.appendChild(document.createElement('p')).innerText = response);
-
-        loadData('index.html').then(
-            response => document.body.appendChild(document.createElement('pre')).innerText = response)
-        
-
-    }
-
-
-
+   
 //     Исходные данные
 // var messages = [
 //     "backspace",
@@ -163,4 +109,30 @@ fetch('simple.json')
                 ),
                 console.log(message)
             )
-    )
+    );
+
+
+
+
+//     Изменим условие предыдущего задания
+
+// Массив messages, объект log и функция sendMessage остаются теми же
+
+// Немного изменится метод getKey:
+
+// messages.getKey = () => new Date().toLocaleString().split(", ")[1]
+// Нужно напилить код рекурсивной функции recursive, которая вызывает sendMessage поочередно с каждым элементом массива messages, но только после того, как предыдущий месседж будет залогирован в объекте log
+
+// var sendAll = () => {
+//     var index = 0
+//     function recursive () {
+//         ...
+//     }
+//     recursive ()
+// }
+
+// sendAll()
+
+
+
+document.cookie = "userName=Алекс"
