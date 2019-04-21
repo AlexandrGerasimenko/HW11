@@ -123,16 +123,40 @@ fetch('simple.json')
 // messages.getKey = () => new Date().toLocaleString().split(", ")[1]
 // Нужно напилить код рекурсивной функции recursive, которая вызывает sendMessage поочередно с каждым элементом массива messages, но только после того, как предыдущий месседж будет залогирован в объекте log
 
-// var sendAll = () => {
-//     var index = 0
-//     function recursive () {
-//         ...
-//     }
-//     recursive ()
-// }
 
-// sendAll()
+var messages = [
+  "backspace",
+  "enter",
+  "shift",
+  "control",
+  "delete",
+  "space",
+  "subtract"
+]
+
+messages.getKey = () => { new Date().toLocaleString().split(", ")[1];
+  // var key = new Date().toLocaleString().split(", ")[1]
+  // return log [ key ] ? log [ key + "[2]" ] ? key + "[3]" : key + "[2]" : key
+}
+
+var log = {}
+
+var sendMessage = message => new Promise (
+  resolve => setTimeout (
+      () => resolve ( message ),
+      Math.random () * 7000
+  )
+);
 
 
+var sendAll = () => {
+    var index = 0
+    function recursive () {
+     
+    }
+    recursive ()
+}
 
-document.cookie = "userName=Алекс"
+sendAll()
+
+
